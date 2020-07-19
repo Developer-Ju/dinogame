@@ -78,6 +78,14 @@ var obstacles = [];
 var obstacles_spawn_timer = 0;
 
 
+window.addEventListener("load", function() {
+	var cookie_highscore = getCookie("hi");
+	if (cookie_highscore != "") {
+		highscore = parseInt(cookie_highscore);
+	}
+});
+
+
 function dinoLoop() { // main loop
 	if (firstLoop) {
 		firstLoop = false;
@@ -151,6 +159,7 @@ function dinoLoop() { // main loop
 					state = 2;
 					if (score > highscore) {
 						highscore = score;
+						document.cookie = "hi=" + highscore + "; expires=Wed, 31 Dec 3000 23:59:59 UTC; path=/";
 					}
 				}
 				
@@ -461,4 +470,20 @@ function start() {
 
 function randint(min, max) {
 	return Math.floor((Math.random() * max) + min);
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
 }
