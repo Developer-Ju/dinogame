@@ -159,7 +159,7 @@ function dinoLoop() { // main loop
 					state = 2;
 					if (score > highscore) {
 						highscore = score;
-						document.cookie = "hi=" + highscore + "; expires=Wed, 31 Dec 3000 23:59:59 UTC; path=/";
+						document.cookie = "hi=" + highscore + "; expires=Wed, 31 Dec 3000 23:59:59 UTC; path=/; SameSite=Strict";
 					}
 				}
 				
